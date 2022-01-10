@@ -8,5 +8,5 @@ app.get("/a", (req, res) => {
   res.send("Hello A");
 });
 
-// 監聽 port
-app.listen(5000);
+// 監聽 port，如無預設 port 則 port 為 5000
+app.listen(process.env.PORT || 5000);
