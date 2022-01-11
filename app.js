@@ -4,8 +4,9 @@ let app = require("express")();
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
-app.get("/a", (req, res) => {
-  res.send("Hello A");
+// params
+app.get("/params/:uid", (req, res) => {
+  res.send("Hello " + req.params.uid);
 });
 
 // 監聽 port，如無預設 port 則 port 為 5000
