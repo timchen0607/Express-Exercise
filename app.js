@@ -8,6 +8,7 @@ app.use((req, res, next) => {
 
 // 基本路由，http://localhost:5000/
 app.get("/", (req, res) => {
+  someErr();
   res.send("Hello World");
 });
 // params，http://localhost:5000/p/5
@@ -20,9 +21,14 @@ app.get("/q/", (req, res) => {
   res.send("Hello" + limit);
 });
 
-// 404page
+// 404 page
 app.use((req, res, next) => {
-  res.status(400).send("無此頁面");
+  res.status(404).send("無此頁面");
+});
+// error page
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("發生錯誤");
 });
 
 // 監聽 port，如無預設 port 則 port 為 5000
