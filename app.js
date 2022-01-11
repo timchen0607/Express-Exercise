@@ -5,9 +5,13 @@ app.use((req, res, next) => {
   console.log("有人進來了");
   next();
 });
+const login = (req, res, next) => {
+  console.log("登入中...");
+  next();
+};
 
 // 基本路由，http://localhost:5000/
-app.get("/", (req, res) => {
+app.get("/", login, (req, res) => {
   someErr();
   res.send("Hello World");
 });
