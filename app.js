@@ -1,4 +1,7 @@
-let app = require("express")();
+const express = require("express");
+const app = express();
+// 設定靜態檔案路徑
+app.use(express.static("public"));
 
 // middleware
 app.use((req, res, next) => {
@@ -12,8 +15,7 @@ const login = (req, res, next) => {
 
 // 基本路由，http://localhost:5000/
 app.get("/", login, (req, res) => {
-  someErr();
-  res.send("Hello World");
+  res.send('<image src="./profile.png">');
 });
 // params，http://localhost:5000/p/5
 app.get("/p/:uid", (req, res) => {
@@ -23,6 +25,10 @@ app.get("/p/:uid", (req, res) => {
 app.get("/q/", (req, res) => {
   let limit = req.query.limit;
   res.send("Hello" + limit);
+});
+// when err，http://localhost:5000/err
+app.get("/err/", (req, res) => {
+  someErr();
 });
 
 // 404 page
