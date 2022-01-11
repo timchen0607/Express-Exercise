@@ -1,5 +1,11 @@
 let app = require("express")();
 
+// middleware
+app.use((req, res, next) => {
+  console.log("有人進來了");
+  next();
+});
+
 // 基本路由，http://localhost:5000/
 app.get("/", (req, res) => {
   res.send("Hello World");
