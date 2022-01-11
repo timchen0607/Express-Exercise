@@ -20,5 +20,10 @@ app.get("/q/", (req, res) => {
   res.send("Hello" + limit);
 });
 
+// 404page
+app.use((req, res, next) => {
+  res.status(400).send("無此頁面");
+});
+
 // 監聽 port，如無預設 port 則 port 為 5000
 app.listen(process.env.PORT || 5000);
